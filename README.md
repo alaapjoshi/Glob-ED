@@ -1,5 +1,5 @@
 # Glob-ED
 
-This is my project for the MEGA hacks 2023 summer hackathon. 
+Globed is a simple app developed for people in all countries to get education and learn for free
 
-please don't steal my api keys I will probaly revoked them already. 
+MEGA hacks 2023 summer hackathon. 
