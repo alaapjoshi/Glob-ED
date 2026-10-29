@@ -34,7 +34,6 @@ Many students around the world can't afford tutoring or don't have a teacher nea
 | Frontend | React Native 0.71, Expo SDK 48, React Navigation 6, React Native Paper |
 | Backend | OpenAI Chat Completions API (`gpt-3.5-turbo`) via Axios |
 | Database | Firebase Cloud Firestore |
-| Tools | Python, LlamaIndex, Gradio (experimental `GPT/` prototype) |
 
 ## Getting Started
 
@@ -54,9 +53,9 @@ npm install --legacy-peer-deps react-native-web@~0.18.10
 
 Then add your own keys. They were removed from the repo, and the app will not build until you replace the placeholders:
 
-1. In `human/signup.jsx` and `human/check.jsx`, replace `{ "YOU NOT GETTING ANYTHING" }` with your Firebase web config object (`apiKey`, `authDomain`, `projectId`, `appId`, and so on).
-2. In `Ai/ai.jsx`, set `apiKey` to your OpenAI API key.
-3. In `home/home.jsx`, change `require('')` to `require('../assets/Globe-ED.logo.png')` so the logo loads.
+1. In `src/screens/teachers/TeacherSignUpScreen.jsx` and `src/screens/teachers/TeacherListScreen.jsx`, replace `{ "YOU NOT GETTING ANYTHING" }` with your Firebase web config object (`apiKey`, `authDomain`, `projectId`, `appId`, and so on).
+2. In `src/screens/AiTutorScreen.jsx`, set `apiKey` to your OpenAI API key.
+3. In `src/screens/HomeScreen.jsx`, change `require('')` to `require('../../assets/Globe-ED.logo.png')` so the logo loads.
 
 ### Usage
 ~~~bash
@@ -71,20 +70,23 @@ On Node 17 or newer, the web build may need `NODE_OPTIONS=--openssl-legacy-provi
 ## Project Structure
 ~~~text
 Glob-ED/
-  App.jsx            # root: bottom tab navigator (Home, Ai, Human)
-  home/home.jsx      # landing screen
-  Ai/ai.jsx          # AI tutor chat, calls the OpenAI API
-  human/             # teacher flow: stack navigator, sign-up, teacher list, chat
-  GPT/               # experimental Python prototype for a custom-document chatbot
-  assets/            # app icon, splash screen, logo
-  docs/images/       # README images and their HTML sources
-  app.json           # Expo config
+  App.jsx                          # entry point: bottom tabs (Home, Ai, Human)
+  src/screens/
+    HomeScreen.jsx                 # landing screen
+    AiTutorScreen.jsx              # AI tutor chat, calls the OpenAI API
+    teachers/
+      TeachersNavigator.jsx        # stack navigator for the Human tab
+      TeachersHomeScreen.jsx       # choose: sign up as a teacher or get help
+      TeacherSignUpScreen.jsx      # sign-up form, writes to Firestore
+      TeacherListScreen.jsx        # teacher list, reads from Firestore
+      TeacherChatScreen.jsx        # chat screen for one teacher
+  assets/                          # app icon, splash screen, logo
+  docs/images/                     # README images and their HTML sources
+  app.json                         # Expo config
 ~~~
 
 ## How It Works
 `App.jsx` sets up a Material bottom tab navigator with three tabs. The **Ai** tab keeps the conversation in React state and sends each question to OpenAI's Chat Completions endpoint with Axios, then appends the reply. The **Human** tab has its own stack navigator: the sign-up screen writes a document to the Firestore `teachers` collection, the Get Help screen reads that collection into a list, and each card opens a chat screen with the teacher's details.
-
-The `GPT/` folder is an experimental Python prototype that uses LlamaIndex and Gradio to answer questions from a folder of your own documents. It was not connected to the app.
 
 ~~~mermaid
 flowchart LR
@@ -105,13 +107,13 @@ This was built for a hackathon, and some parts are still prototypes:
 - The OpenAI key is called from the client app. A real release would route requests through a small backend so the key stays secret.
 - Teacher chat messages are kept only on the student's device. Teachers don't receive them yet.
 - The Home screen's feature cards and Get Started button don't navigate anywhere yet.
-- The Firebase config is duplicated in several files instead of being imported from `firebaseConfig.js`.
+- The Firebase config is pasted into two screens instead of living in one shared module.
 
 ## Future Improvements
 - Move OpenAI calls to a serverless function and load config from environment variables.
 - Store chat messages in Firestore so teachers and students can talk in real time.
 - Add Firebase Authentication for teacher and student accounts.
-- Translate the interface into more languages (a `locales/` folder is already in place).
+- Translate the interface into more languages.
 
 ## Author
 **Alaap Joshi** - Computer Science + Cognitive Science, Rutgers University-New Brunswick

@@ -1,24 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './home/home';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-//const Tab = createBottomTabNavigator();
+import HomeScreen from './src/screens/HomeScreen';
+import AiTutorScreen from './src/screens/AiTutorScreen';
+import TeachersNavigator from './src/screens/teachers/TeachersNavigator';
+
 const Tab = createMaterialBottomTabNavigator();
-import Ai2 from './Ai/ai';
-import Human from './human/human';
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 export default function App() {
   return (
     <NavigationContainer >
       <Tab.Navigator>
       <Tab.Screen name="Home" 
-      component={Home} 
+      component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (
@@ -27,7 +23,7 @@ export default function App() {
       }} />
 
       <Tab.Screen name="Ai" 
-      component={Ai2} 
+      component={AiTutorScreen}
       options={{
           tabBarLabel: 'Ai',
           tabBarIcon: ({ color }) => (
@@ -35,7 +31,7 @@ export default function App() {
           ),
         }} />
         <Tab.Screen name="Human" 
-        component={Human} 
+        component={TeachersNavigator}
         options={{
           tabBarLabel: 'Human',
           tabBarIcon: ({ color }) => (
@@ -49,12 +45,3 @@ export default function App() {
     
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

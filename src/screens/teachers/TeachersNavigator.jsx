@@ -1,12 +1,11 @@
-// App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider as PaperProvider } from 'react-native-paper';
-import SignUpScreen from './signup';
-import Check from './check';
-import Humanscreen from './humanScreen'
-import ChatPage from './ChatPage';
+import SignUpScreen from './TeacherSignUpScreen';
+import Check from './TeacherListScreen';
+import Humanscreen from './TeachersHomeScreen';
+import ChatPage from './TeacherChatScreen';
 const Stack = createStackNavigator();
 
 const Human = () => {

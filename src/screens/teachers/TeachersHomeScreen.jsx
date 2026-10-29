@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import SignUpScreen from './signup';
+
 const Humanscreen = ({ navigation }) => {
   return (
     <View style={styles.container}>

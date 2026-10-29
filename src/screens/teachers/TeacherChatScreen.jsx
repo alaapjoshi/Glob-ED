@@ -1,4 +1,3 @@
-// ChatPage.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 

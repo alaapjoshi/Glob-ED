@@ -13,7 +13,6 @@ const Ai2 = () => {
     </View>
   );
   const [messages, setMessages] = useState([]);
-  const [response, setResponse] = useState('');
   const [inputMessage, setInputMessage] = useState('');
   const test = () => {
     setMessages([...messages, { text: inputMessage, isUser: true }])
@@ -39,10 +38,7 @@ const Ai2 = () => {
 
       const response = await axios.post(url, data, { headers });
       const botReply = response.data.choices[0].message.content.trim();
-      setResponse(botReply);
       setMessages([...messages, { text: inputMessage, isUser: true } , { text: botReply, isUser: false }]);
-
-      console.log(messages)
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -55,7 +51,6 @@ const Ai2 = () => {
         renderItem={renderMessage}
         keyExtractor={(item, index) => index.toString()}
         style={{flex: 1,marginTop: 30}}
-        //inverted
       />
       <TextInput
         style={{ borderWidth: 1, borderColor: '#ccc', padding: 8, marginBottom: 10 }}
@@ -70,15 +65,6 @@ const Ai2 = () => {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'flex-end',
-  },
-  chatArea: {
-    flex: 1,
-    marginBottom: 10,
-  },
   userMessageContainer: {
     alignItems: 'flex-end',
     marginBottom: 10,
@@ -100,25 +86,6 @@ const styles = StyleSheet.create({
     color: '#333',
     padding: 10,
   },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  sendButton: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  sendButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
 });
-
 
 export default Ai2;

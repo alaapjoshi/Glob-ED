@@ -14,13 +14,6 @@ yarn-error.*
 *.mobileprovision
 *.orig.*
 
-# Python (GPT/ prototype)
-__pycache__/
-*.pyc
-.venv/
-venv/
-GPT/index.json
-
 # Secrets
 .env
 .env*.local

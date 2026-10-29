@@ -1,26 +1,18 @@
-// Initialize Firebase with your configurations
-
-// Check.js
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, Text, StyleSheet, SafeAreaView } from 'react-native';
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
-import ChatPage from './ChatPage';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-const Stack = createStackNavigator();
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
   "YOU NOT GETTING ANYTHING"
   };
-  const app = initializeApp(firebaseConfig);
-
+const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-
 
 const Check = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -76,11 +68,6 @@ const Check = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 16,
-      backgroundColor: '#fff', // Set the background color of the container
-    },
     card: {
       marginBottom: 12,
       elevation: 4, // Add a shadow effect to the card
@@ -90,6 +77,5 @@ const styles = StyleSheet.create({
       paddingBottom: 16,
     },
   });
-// ... (your existing styles)
 
 export default Check;
