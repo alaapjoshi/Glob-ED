@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+:root {
+  --bg: #0F172A;
+  --card: #1E293B;
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --accent: #38BDF8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.canvas { position: relative; overflow: hidden; background: var(--bg); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.chip {
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Phone frame around a real app screenshot (screens are 430x932 CSS px) */
+.phone {
+  background: #020617;
+  border: 2px solid #334155;
+  border-radius: 48px;
+  padding: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+.phone img { display: block; width: 100%; border-radius: 36px; }
+
+/* Gallery layout: 1600x1000 */
+.gallery { width: 1600px; height: 1000px; padding: 64px 96px; display: flex; align-items: center; gap: 96px; }
+.gallery .copy { flex: 1; }
+.gallery .eyebrow { color: var(--accent); font-size: 22px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.gallery h1 { font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 28px; }
+.gallery p { color: var(--muted); font-size: 28px; line-height: 1.5; max-width: 640px; }
+.gallery ul { list-style: none; margin-top: 40px; display: grid; gap: 18px; }
+.gallery li { background: var(--card); border-radius: 16px; padding: 20px 26px; font-size: 22px; color: var(--text); max-width: 640px; }
+.gallery li span { color: var(--accent); font-weight: 700; margin-right: 12px; }
+.gallery .phone { width: 420px; flex: none; }

@@ -1,1 +1,32 @@
 node_modules
+
+# Expo / React Native
+.expo/
+dist/
+web-build/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Python (GPT/ prototype)
+__pycache__/
+*.pyc
+.venv/
+venv/
+GPT/index.json
+
+# Secrets
+.env
+.env*.local
+key.txt
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

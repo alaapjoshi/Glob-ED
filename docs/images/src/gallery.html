@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css"></head>
+<body>
+<div class="canvas gallery">
+  <div class="copy">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <p id="body"></p>
+    <ul id="points"></ul>
+  </div>
+  <div class="phone"><img id="screen" alt=""></div>
+</div>
+<script>
+  // Render with ?n=1..4 to produce gallery-1.png .. gallery-4.png
+  const slides = {
+    1: { eyebrow: 'AI tutor', title: 'Ask the AI tutor anything',
+         body: 'Students type a question and get a plain-language answer from OpenAI\'s gpt-3.5-turbo, shown as a chat.',
+         points: ['Chat-style message history', 'Works for any subject'], screen: 'ai' },
+    2: { eyebrow: 'Human teachers', title: 'Teachers sign up in seconds',
+         body: 'Volunteer teachers enter their name, age, specialties, and timezone. The profile is saved to Cloud Firestore.',
+         points: ['Four-field sign-up form', 'Stored in a Firestore collection'], screen: 'signup' },
+    3: { eyebrow: 'Human teachers', title: 'Browse available teachers',
+         body: 'Students see every registered teacher, loaded from Firestore, with their subjects and timezone.',
+         points: ['Live list from the database', 'Timezone shown to plan sessions'], screen: 'teachers' },
+    4: { eyebrow: 'Human teachers', title: 'Open a chat with a teacher',
+         body: 'Each teacher card opens a chat screen headed with that teacher\'s name and specialties.',
+         points: ['One tap from the teacher list', 'Familiar messaging layout'], screen: 'chat' },
+  };
+  const s = slides[new URLSearchParams(location.search).get('n') || 1];
+  for (const k of ['eyebrow', 'title', 'body']) document.getElementById(k).textContent = s[k];
+  document.getElementById('points').innerHTML = s.points.map(p => `<li><span>&rarr;</span>${p}</li>`).join('');
+  document.getElementById('screen').src = `screens/${s.screen}.png`;
+</script>
+</body></html>
